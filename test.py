@@ -1,29 +1,32 @@
 from flask import Flask
 from flask import request
-from flask import jsonify
-from flask import json
+from flask_pymongo import PyMongo
+from flask import render_template
+from datetime import datetime
 
 app = Flask(__name__)
-
+mongo = PyMongo(app)
 
 def hello_world_get():
-    print("GET METHOD START")
     sn = request.args.get('sn')
     ver = request.args.get('ver')
     print("sn {} ver {}".format(sn, ver))
-    res ="""
-    {
+    res = """{
     "ctr":"1",
     "cfgLock":"1", "updateTimeMin":"240", "smsEnable":"1",
-    "phoneNumber":"+7XXXXXXXXXX", }
+    "phoneNumber":"+7XXXXXXXXXX", 
+    }
     """
+    print("done")
+    global mongo
+    mongo.db.queries.insert({'timestamp': datetime.now(), 'method':'GET', 'sn': str(sn), 'ver': str(ver)})
     return res
 
 
 def hello_world_post():
     print("POST METHOD START")
     body = request.data
-    print(body)
+    mongo.db.queries.insert({'timestamp': datetime.now(), 'method':'POST', 'body': str(body)})
     return ""
 
 
@@ -33,4 +36,11 @@ def hello_world():
         return hello_world_post()
     else:
         return hello_world_get()
-    return "1"
+    return "Smthng strange", 500
+
+
+@app.route('/get_logs', methods=['GET'])
+def get_logs():
+    logs = mongo.db.queries.find().sort("timestamp")
+    return render_template('logs.html', logs=logs)
+

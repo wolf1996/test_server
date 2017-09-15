@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<table>
+    {% for item in logs %}
+        <col width="400" valign="top">
+        <col width="250" valign="top">
+            {% if item['method'] == 'GET' %}
+                <col width="150" valign="top">
+                <col width="250" valign="top">
+            {% endif %}
+            {% if item['method'] == 'POST' %}
+                 <col width="800" valign="top">
+            {% endif %}
+        <TR>
+            <TD>{{ item['timestamp'] }}</TD>
+            <TD>{{ item['method'] }}</TD>
+            {% if item['method'] == 'GET' %}
+                <TD>{{ item['sn'] }}</TD>
+                <TD>{{ item['ver'] }}</TD>
+            {% endif %}
+            {% if item['method'] == 'POST' %}
+                <TD>{{ item['body'] }}</TD>
+            {% endif %}
+        </TR>
+    {% endfor %}
+</table>
+</head>
+<body>
+
+</body>
+</html>
