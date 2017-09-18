@@ -1,30 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<table>
+
     {% for item in logs %}
+        <table>
         <col width="400" valign="top">
         <col width="250" valign="top">
             {% if item['method'] == 'GET' %}
-                <col width="150" valign="top">
-                <col width="250" valign="top">
+                <col width="400" valign="top">
             {% endif %}
             {% if item['method'] == 'POST' %}
-                 <col width="800" valign="top">
+                 <col width="400" valign="top">
             {% endif %}
         <TR>
             <TD>{{ item['timestamp'] }}</TD>
             <TD>{{ item['method'] }}</TD>
+            <TD>
             {% if item['method'] == 'GET' %}
+                <table border="1">
+                <TR>
+                <TD>SN</TD>
+                <TD>VER</TD>
+                </TR>
+                <TR>
                 <TD>{{ item['sn'] }}</TD>
                 <TD>{{ item['ver'] }}</TD>
+                </TR>
+                </table>
             {% endif %}
+            </TD>
+            <TD>
             {% if item['method'] == 'POST' %}
-                <TD>{{ item['body'] }}</TD>
+                <table border="1">
+                <TR>
+                <TD>DATE</TD>
+                <TD>SN</TD>
+                <TD>LAT</TD>
+                <TD>GNSVIS</TD>
+                <TD>SATUSED</TD>
+                <TD>TIME</TD>
+                <TD>LON</TD>
+                <TD>BATT</TD>
+                <TD>CTR</TD>
+                <TD>GPSVIS</TD>
+                </TR>
+                <TR>
+                <TD>{{ item['body']['date'] }}</TD>
+                <TD>{{ item['body']['sn'] }}</TD>
+                <TD>{{ item['body']['lat'] }}</TD>
+                <TD>{{ item['body']['gnsvis'] }}</TD>
+                <TD>{{ item['body']['satused'] }}</TD>
+                <TD>{{ item['body']['time'] }}</TD>
+                <TD>{{ item['body']['lon'] }}</TD>
+                <TD>{{ item['body']['batt'] }}</TD>
+                <TD>{{ item['body']['ctr'] }}</TD>
+                <TD>{{ item['body']['gpsvis'] }}</TD>
+                </TR>
+                </table>
             {% endif %}
+            </TD>
         </TR>
+        </table>
     {% endfor %}
-</table>
 </head>
 <body>
 

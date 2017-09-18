@@ -3,6 +3,9 @@ from flask import request
 from flask_pymongo import PyMongo
 from flask import render_template
 from datetime import datetime
+import json
+
+#{ "sn":"123456", "ctr":"1", "batt":"87", "date":"yyyyMMdd", "time":"hhmmss", "lat":"+dd.dddddd", "lon":"+dd.dddddd", "gpsvis":"10", "gnsvis":"11", "satused":"6", }
 
 app = Flask(__name__)
 mongo = PyMongo(app)
@@ -25,8 +28,8 @@ def hello_world_get():
 
 def hello_world_post():
     print("POST METHOD START")
-    body = request.data
-    mongo.db.queries.insert({'timestamp': datetime.now(), 'method':'POST', 'body': str(body)})
+    body = json.loads(request.data.decode())
+    mongo.db.queries.insert({'timestamp': datetime.now(), 'method':'POST', 'body': body})
     return ""
 
 
@@ -43,4 +46,3 @@ def hello_world():
 def get_logs():
     logs = mongo.db.queries.find().sort("timestamp")
     return render_template('logs.html', logs=logs)
-
