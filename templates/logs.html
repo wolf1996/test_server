@@ -33,28 +33,68 @@
             {% if item['method'] == 'POST' %}
                 <table border="1">
                 <TR>
-                <TD>DATE</TD>
-                <TD>SN</TD>
-                <TD>LAT</TD>
-                <TD>GNSVIS</TD>
-                <TD>SATUSED</TD>
-                <TD>TIME</TD>
-                <TD>LON</TD>
-                <TD>BATT</TD>
-                <TD>CTR</TD>
-                <TD>GPSVIS</TD>
+                <TD>FIELD</TD>
+                <TD>VAL</TD>
                 </TR>
                 <TR>
+                <TD>DATE</TD>
                 <TD>{{ item['body']['date'] }}</TD>
+                </TR>
+                <TR>
+                <TD>SN</TD>
                 <TD>{{ item['body']['sn'] }}</TD>
+                </TR>
+                <TR>
+                <TD> LAT </TD>
                 <TD>{{ item['body']['lat'] }}</TD>
+                </TR>
+                <TR>
+                <TD> BODY </TD>
                 <TD>{{ item['body']['gnsvis'] }}</TD>
+                </TR>
+                <TR>
+                <TD> SATUSED </TD>
                 <TD>{{ item['body']['satused'] }}</TD>
+                </TR>
+                <TR>
+                <TD>TIME</TD>
                 <TD>{{ item['body']['time'] }}</TD>
+                </TR>
+                <TR>
+                <TD>LON</TD>
                 <TD>{{ item['body']['lon'] }}</TD>
+                </TR>
+                <TR>
+                <TD>BATT</TD>
                 <TD>{{ item['body']['batt'] }}</TD>
+                </TR>
+                <TR>
+                <TD> CTR </TD>
                 <TD>{{ item['body']['ctr'] }}</TD>
+                </TR>
+                <TR>
+                <TD> GPSVIS </TD>
                 <TD>{{ item['body']['gpsvis'] }}</TD>
+                </TR>
+                <TR>
+                <TD> GSMLC </TD>
+                <TD>{{ item['body']['gsmlc'] }}</TD>
+                </TR>
+                <TR>
+                <TD> GSMLAT </TD>
+                <TD>{{ item['body']['gsmlat'] }}</TD>
+                </TR>
+                <TR>
+                <TD> GSMLON </TD>
+                <TD>{{ item['body']['gsmlon'] }}</TD>
+                </TR>
+                <TR>
+                <TD> GSMDATE </TD>
+                <TD>{{ item['body']['gsmdate'] }}</TD>
+                </TR>
+                <TR>
+                <TD> GSMTIME </TD>
+                <TD>{{ item['body']['gsmtime'] }}</TD>
                 </TR>
                 </table>
             {% endif %}

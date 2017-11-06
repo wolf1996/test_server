@@ -14,12 +14,15 @@ def hello_world_get():
     sn = request.args.get('sn')
     ver = request.args.get('ver')
     print("sn {} ver {}".format(sn, ver))
-    res = """{
+    res = """{{
+    "sn" : {}
     "ctr":"1",
-    "cfgLock":"1", "updateTimeMin":"240", "smsEnable":"1",
+    "cfgLock":"1", 
+    "updateTimeMin":"240", 
+    "smsEnable":"1",
     "phoneNumber":"+7XXXXXXXXXX", 
-    }
-    """
+    }}
+    """.format(sn)
     print("done")
     global mongo
     mongo.db.queries.insert({'timestamp': datetime.now(), 'method':'GET', 'sn': str(sn), 'ver': str(ver)})
